@@ -6,8 +6,20 @@ site_description: 邱露的个人网站
 
 # [Navigtion]
 nav:
+  - index.md
   - 图形学基础:
-    - index.md
+    - CGBasic/渲染管线.md
+    - CGBasic/抗锯齿算法.md
+    - CGBasic/正向渲染和延迟渲染.md
+    - CGBasic/重要性采样.md
+  - LeetCode
+    - leetcode/二分查找.md
+    - leetcode/双指针.md
+    - leetcode/贪心算法.md
+  - OpenGL
+    - OpenGL/VAO,VBO和EBO.md
+
+    
 
 # [UI]
 ## [top]
@@ -83,6 +95,4 @@ extra_javascript:
 extra_css:
   - mkdocs/css/no-footer.css # 不使用底部的翻页
   - mkdocs/css/unordered-list-symbols.css # multiplt unordered list symbols
-
-#aaaaaaaaaaaa
 

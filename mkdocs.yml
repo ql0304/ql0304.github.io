@@ -12,6 +12,10 @@ nav:
       - CG/CGBasic/抗锯齿算法.md
       - CG/CGBasic/正向渲染和延迟渲染.md
       - CG/CGBasic/重要性采样.md
+      - CG/CGBasic/图形渲染管线.md
+      - CG/CGBasic/GPU渲染管线.md
+      - CG/CGBasic/加速算法.md
+      - CG/CGBasic/变换矩阵.md
     - 面经总结:
       - CG/experience/判断一个多边形是否是凸多边形.md
       - CG/experience/判断点在三角形内.md
@@ -19,6 +23,7 @@ nav:
       - CG/experience/已知入射向量和法线求反射向量.md
       - CG/experience/给定点集求凸包.md
   - LeetCode:
+    - leetcode/思维导图.md
     - leetcode/二分查找.md
     - leetcode/双指针.md
     - leetcode/贪心算法.md
@@ -75,6 +80,7 @@ plugins:
         - en
         - ja
   - tags # 给单篇文章添加标签 https://squidfunk.github.io/mkdocs-material/setup/setting-up-tags/?h=tags
+  - glightbox  #点击图片会放大至全屏
 markdown_extensions:
   - pymdownx.arithmatex: # latex支持
       generic: true

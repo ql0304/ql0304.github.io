@@ -16,6 +16,7 @@ nav:
       - CG/CGBasic/GPU渲染管线.md
       - CG/CGBasic/加速算法.md
       - CG/CGBasic/变换矩阵.md
+      - CG/CGBasic/brdf.md
     - 面经总结:
       - CG/experience/判断一个多边形是否是凸多边形.md
       - CG/experience/判断点在三角形内.md

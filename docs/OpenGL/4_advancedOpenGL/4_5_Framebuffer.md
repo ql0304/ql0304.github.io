@@ -20,7 +20,7 @@ glGenFramebuffers(1, &framebuffer);
 glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 ```
 
-![mkdocs](images\6.jpg)
+![mkdocs](images/6.jpg)
 
 纹理：像之前一样创建，format填GL_RGB，data填null生成一个空纹理，纹理的大小设为视口的大小。生成完毕之后要绑定到framebuffer中
 

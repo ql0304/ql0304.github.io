@@ -4,11 +4,11 @@
 
 下载源码：[Release The 5.3.1 Bugfix Release · assimp/assimp (github.com)](https://github.com/assimp/assimp/releases/tag/v5.3.1)此链接为5.3.1版，解压到本地
 
-![mkdocs](images\build1.png)
+![mkdocs](images/build1.png)
 
 使用命令**cmake -B build -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles"** 
 
-![mkdocs](images\build2.png)
+![mkdocs](images/build2.png)
 
 -B    指定构建的项目文件所在的目录。 -B build就是在当前文件夹下新建一个build文件夹，把构建的项目文件全部放里面。
 
@@ -65,7 +65,7 @@ cmake 支持的 IDE 如下：
 
 进入build文件夹，执行命令**mingw32-make -j8**；或者不进入build文件夹，执行命令**cmake --build build -j8**。
 
-![mkdocs](images\build3.png)
+![mkdocs](images/build3.png)
 
 -j8的意思是使用8个线程来编译，我自己的电脑最多有6个线程，所以我用的 -j6。
 
@@ -73,7 +73,7 @@ cmake --build build 的含义是：执行build文件夹下的构建系统，生�
 
 编译过程会报这个错误：**[-Werror=dangling-reference]**
 
-![mkdocs](images\error.png)
+![mkdocs](images/error.png)
 
 一种方法是把g++的版本改为12；另一种方法是把error改成warming，不让它报错就可以了！在CMakelists.txt文件的131行添加**SET(ASSIMP_WARNINGS_AS_ERRORS FALSE)**
 
@@ -102,7 +102,7 @@ if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // 
 
 AssImp的主要的类如下图所示：
 
-![mkdocs](images\aiScene.png)
+![mkdocs](images/aiScene.png)
 
 - **aiScene 作为AssImp加载模型的根数据结构，保存了从模型加载的顶点位置、法向量、纹理、光照等数据**，例如它通过数组mMeshes保存Mesh数据，通过mMaterials保存材质数据。总之aiScene保存了加载的模型数据，其余类通过索引aiScene中存储的对象来获取对应的数据。
 

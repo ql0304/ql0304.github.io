@@ -4,11 +4,11 @@
 
 现在想给之前的两个箱子场景加一些草，目标是这样的：
 
-![mkdocs](images\2.png)
+![mkdocs](images/2.png)
 
 如果我们新建一个四边形的VAO，然后把草的纹理贴到四边形上，按之前的渲染步骤会得到下面这样的错误结果：
 
-![mkdocs](images\3.jpg)
+![mkdocs](images/3.jpg)
 
 出现这种问题是因为OpenGL默认不知道如何处理alpha值，不知道什么时候该丢弃片段。所以要在片段着色器中手动指定。
 
@@ -33,7 +33,7 @@ glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_B
 
 绘制草的时候，透明的片段我们直接丢弃了，但是这种方法不能让我们渲染半透明的图像。要想渲染有多个透明度级别的图像，我们需要启用混合(Blending)。具体如何启用请查阅[混合 - LearnOpenGL CN (learnopengl-cn.github.io)](https://learnopengl-cn.github.io/04 Advanced OpenGL/03 Blending/)。这里讲一下**最前面窗户的透明部分遮蔽了背后的窗户**这个问题。
 
-![mkdocs](images\4.jpg)
+![mkdocs](images/4.jpg)
 
 窗户的前后顺序为1，2，3。可以看到1号窗户遮蔽了2号，但是2号却没遮住3号。这是为什么呢？这跟窗户的**绘制顺序**有关。
 
@@ -75,7 +75,7 @@ while(!glfwWindowShouldClose(window)){
 2. 对所有透明的物体排序。
 3. 从远到近按顺序绘制所有透明的物体。
 
-![mkdocs](images\5.png)
+![mkdocs](images/5.png)
 
 vegetation按z坐标排序后就对了。
 

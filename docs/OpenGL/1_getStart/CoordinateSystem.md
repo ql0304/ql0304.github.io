@@ -85,7 +85,7 @@ while (!glfwWindowShouldClose(window)){
 
 **注意：fovy一定要把角度转为弧度！！！**也就是要用glm::radians()函数。如果忘记转换直接填角度的话，滚轮往下滚1格，场景就会像下面这样很畸形
 
-![mkdocs](images\perspectiveError.png)
+![mkdocs](images/perspectiveError.png)
 
 弧度定义： 两条射线从圆心向圆周射出，形成一个夹角和夹角正对的一段弧。当这段弧长正好等于圆的半径时，两条射线的夹角大小为1弧度。弧度 = 弧长 / 半径
 

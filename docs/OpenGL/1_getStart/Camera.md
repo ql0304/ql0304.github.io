@@ -18,7 +18,7 @@ shader.setMat4("view",view);
 
 Camera本质上操作的是view空间。要实现**自由移动**和**视角移动**，自由移动指的是摄像机的前后、左右、上下移动；视角移动指的是相机位置不变，相机看向的方向改变。视角移动有三种方式：pitch、yaw和roll。
 
-![mkdocs](images\cameraViewAngle.png)
+![mkdocs](images/cameraViewAngle.png)
 
 既然操作的是view空间，那么类中必须要存原点位置(cameraPos)和三根坐标轴。定义这个空间需要3个参数：cameraPos，center(相机看向的点)，up向量。
 
@@ -67,7 +67,7 @@ cameraPos += cameraSpeed * right;
 
 这么写显然是不合适的，况且根据后面的知识，让鼠标移动的时候要完成视角移动，回调函数的参数是屏幕坐标(xpos,ypos)，根据屏幕坐标差计算angle好像也有点困难。于是想到球坐标，把 x 方向上的屏幕坐标差看作 $Δφ$；y 方向上的屏幕坐标差看作$Δθ$。
 
-![mkdocs](images\sphericalCoordinate.png)
+![mkdocs](images/sphericalCoordinate.png)
 
 再把球坐标转换到直角坐标，就能得到更新后的front的值。
 

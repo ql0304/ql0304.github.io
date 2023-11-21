@@ -6,15 +6,14 @@
 
 OpenGL的初始化需要两个第三方库：glfw和glad
 
-**glfw用于窗口的创建。**  #include<GLFW/glfw.h>
+**glfw用于窗口的创建。**  #include<GLFW/glfw.h\>
 
 **glad用于在运行时确定OpenGL的函数地址。**因为OpenGL只是一个标准/规范，具体的实现是由驱动开发商针对特定显卡实现的。由于OpenGL驱动版本众多，它大多数函数的位置都无法在编译时确定下来，需要在运行时查询。所以任务就落在了开发者身上，开发者需要在运行时获取函数地址并将其保存在一个函数指针中供以后使用。glad使用了一个在线服务，我们能够告诉GLAD需要定义的OpenGL版本，并且根据这个版本加载所有相关的OpenGL函数。
 
-#include<glad/glad.h>
+\#include<glad/glad.h\>
 
-```txt
-注意！！必须要在include glfw之前include glad，因为glad的头文件包含了正确的OpenGL头文件，以需要在其它依赖于OpenGL的头文件之前包含GLAD。
-```
+**注意！！必须要在include glfw之前include glad，因为glad的头文件包含了正确的OpenGL头文件，所以需要在其它依赖于OpenGL的头文件之前包含GLAD。**
+
 
 ```c++
 	//在调用OpenGL函数之前要先初始化glad
@@ -35,7 +34,7 @@ void framebuffer_size_callback(GLFWwindow* window,int w,int h){
 
 回调函数只是一个普通的函数，要注册这个函数，通过glfwSetFramebufferSizeCallback()。
 
-![mkdocs](images\framebuffersizeCallback.png)
+![mkdocs](images/framebuffersizeCallback.png)
 
 可以看出framebuffer_size_callback被定义为GLFWframebuffersizefun 类型的参数。GLFWframebuffersizefun 的定义如下，其是一个函数指针，函数的参数和返回值与framebuffer_size_callback对应，因此当将framebuffer_size_callback作为GLFWframebuffersizefun类型传递给glfwSetFramebufferSizeCallback时，就实现了glfwSetFramebufferSizeCallback对于framebuffer_size_callback函数的调用，而且后期需要改变功能只需要传入其他参数和返回值类型相同的函数即可。
 

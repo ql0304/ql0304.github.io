@@ -1,3 +1,3 @@
-# BRDF
+# brdf
 
-![mkdocs](images\brdf.png)
+![mkdocs](images/brdf.png)

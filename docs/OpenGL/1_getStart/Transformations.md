@@ -4,7 +4,7 @@
 
 第三方库：GLM，下载解压之后把下图文件夹复制到include文件夹下就能使用了
 
-![mkdocs](images\glmLoad.png)
+![mkdocs](images/glmLoad.png)
 
 大多数功能都在下面这3个头文件中找到
 

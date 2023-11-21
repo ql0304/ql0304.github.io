@@ -109,15 +109,15 @@ void main(){
 
 把纹理的创建和设置分开写，结果是这样的
 
-![mkdocs](images\multyTexture.png)
+![mkdocs](images/multyTexture.png)
 
 耗了一下午，发现问题是stb_image.h库对于jpg格式的图片，源数据格式和目标数据格式都要用GL_RGB：
 
-![mkdocs](images\multiTexture4.png)
+![mkdocs](images/multiTexture4.png)
 
 对于png格式的图片，源数据格式和目标数据格式要用GL_RGBA：
 
-![mkdocs](images\multiTexture5.png)
+![mkdocs](images/multiTexture5.png)
 
 下面说一下怎么利用多张(2张)纹理：
 
@@ -125,7 +125,7 @@ void main(){
 
 shader内声明两个uniform sampler2D变量，取不同的名字
 
-![mkdocs](images\multiTexture3.png)
+![mkdocs](images/multiTexture3.png)
 
 在渲染循环之前，还要通过使用glUniform1i设置每个采样器的方式告诉OpenGL每个着色器采样器属于哪个纹理单元，只需设置一次，注意在给uniform传参的时候，要保证shader在启动状态，所以：
 ```c++

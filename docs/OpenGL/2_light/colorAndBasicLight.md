@@ -116,11 +116,11 @@ mat3(model)把 model 矩阵的第4列和第4行去掉。但是有平移操作的
 
 正确的fragPos值：
 
-![modocs](images\currectFragpos.png)
+![modocs](images/currectFragpos.png)
 
 错误的fragPos值
 
-![mkdocs](images\worseFragpos.png)
+![mkdocs](images/worseFragpos.png)
 
 另外，光在传播过程中亮度会衰减，因此要计算一个衰减值。这里用$a+bx+cx^2$，其中a,b,c是传进去的参数，x是shading point和光源的距离。
 
@@ -135,7 +135,7 @@ mat3(model)把 model 矩阵的第4列和第4行去掉。但是有平移操作的
 
 ### 聚光
 
-![mkdocs](images\spotlight.png)
+![mkdocs](images/spotlight.png)
 
 聚光需要额外定义：1.聚光所指向的方向(spotDir)；2.切光角(cutoff)。当光源指向shading point的向量，也就是lightDir，和spotDir之间的夹角小于切光角时，物体可以被照亮；大于，就不能被照亮。
 
@@ -174,13 +174,13 @@ if(dot(lightDir,normalize(-light.direction)) > light.cutoff){
 
 最后效果是这样的：
 
-![mkdocs](images\spotlight_res.png)
+![mkdocs](images/spotlight_res.png)
 
 ### soft spotlight
 
 上面的聚光效果边缘过于锐利，原因是片段的亮度值 乘上了个非0即1的数。现在我们需要一个效果，使得片段的亮度在边缘处递减为0。方法是用内外两个切光角，当angle在内切光角以内时，亮度*1；内切光角<angle<外切光角，亮度 * 一个小数；angle>外切光角，亮度*0；因此，用angle在内、外切光角之间插值就行，内切光角上值为1，外切光角值为0，线性插值
 
-![mkdocs](images\interpolation.png)
+![mkdocs](images/interpolation.png)
 
 ```glsl
 float theta = dot(lightDir,normalize(-light.direction));

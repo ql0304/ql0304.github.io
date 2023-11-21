@@ -17,6 +17,9 @@ nav:
       - CG/CGBasic/加速算法.md
       - CG/CGBasic/变换矩阵.md
       - CG/CGBasic/brdf.md
+      - CG/CGBasic/mipmap.md
+      - CG/CGBasic/pbr.md
+      - CG/CGBasic/蒙特卡洛路径追踪.md
     - 面经总结:
       - CG/experience/判断一个多边形是否是凸多边形.md
       - CG/experience/判断点在三角形内.md
@@ -29,7 +32,29 @@ nav:
     - leetcode/双指针.md
     - leetcode/贪心算法.md
   - OpenGL:
-    - OpenGL/VAO,VBO和EBO.md
+    - getStart:
+      - OpenGL/1_getStart/start.md
+      - OpenGL/1_getStart/VAO,VBO和EBO.md
+      - OpenGL/1_getStart/Camera.md
+      - OpenGL/1_getStart/CoordinateSystem.md
+      - OpenGL/1_getStart/shader.md
+      - OpenGL/1_getStart/texture.md
+      - OpenGL/1_getStart/Transformations.md
+    - light:
+      - OpenGL/2_light/colorAndBasicLight.md
+    - loadModel:
+      - OpenGL/3_loadModel/assimp.md
+    - advancedOpenGL:
+      - OpenGL/4_advancedOpenGL/4_1_depthTest.md
+      - OpenGL/4_advancedOpenGL/4_2_stencilTest.md
+      - OpenGL/4_advancedOpenGL/4_3_blending.md
+      - OpenGL/4_advancedOpenGL/4_5_Framebuffer.md
+      - OpenGL/4_advancedOpenGL/4_6_cubeMaps.md
+    - advanceLighting:
+      - OpenGL/4_advancedOpenGL/5_1_blinn-phong.md
+      - OpenGL/4_advancedOpenGL/5_2_Gamma.md
+  - OSG:
+    - ViewerBaseframe().md
 
 # [UI]
 ## [top]

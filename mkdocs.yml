@@ -54,7 +54,7 @@ nav:
       - OpenGL/4_advancedOpenGL/5_1_blinn-phong.md
       - OpenGL/4_advancedOpenGL/5_2_Gamma.md
   - OSG:
-    - ViewerBaseframe().md
+    - ViewerBaseframe.md
 
 # [UI]
 ## [top]

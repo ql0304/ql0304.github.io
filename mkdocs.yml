@@ -15,11 +15,10 @@ nav:
       - CG/CGBasic/图形渲染管线.md
       - CG/CGBasic/GPU渲染管线.md
       - CG/CGBasic/加速算法.md
-      - CG/CGBasic/变换矩阵.md
       - CG/CGBasic/BRDF.md
       - CG/CGBasic/mipmap.md
-      - CG/CGBasic/pbr.md
       - CG/CGBasic/蒙特卡洛路径追踪.md
+      - CG/CGBasic/TangentSpace.md
     - 面经总结:
       - CG/experience/判断一个多边形是否是凸多边形.md
       - CG/experience/判断点在三角形内.md
@@ -55,6 +54,9 @@ nav:
       - OpenGL/5_advancedLighting/5_2_Gamma.md
   - OSG:
     - OSG/ViewerBaseframe.md
+  - 已完成的项目记录:
+    - tinyRenderer:
+      - project/tinyRenderer/bresenham.md
 
 # [UI]
 ## [top]

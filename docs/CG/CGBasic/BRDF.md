@@ -6,7 +6,7 @@
 
 先来看看没有自发光项的渲染方程：$L_o(\omega_o)=\int_{H^2}f_r(\omega_o,\omega_i)L_i(\omega_i)cos\theta_id\omega_i$
 
-$L_i(\omega_i)cos\theta_i$项是shading point接到的光，$f_r$指的是在shading point ，从$\omega_i$方向射过来的光有百分之多少从$\omega_o$射出去。因为对$\omega_o$产生贡献的光是从四面八方照射过来的，因此要对$\omega_i$在半球上积分，这就是渲染方程。
+$L_i(\omega_i)cos\theta_i$项是shading point接收到的能量，$f_r$指的是从$\omega_i$方向射到shading point 的能量有百分之多少从$\omega_o$射出去。因为对$\omega_o$产生贡献的光是从四面八方照射过来的，因此要对$\omega_i$在半球上积分，这就是渲染方程。
 
 BRDF计算的就是$f_r$项，总的来说，**BRDF决定了一个物体的材质！**
 
@@ -40,9 +40,9 @@ BRDF的定义：irradiance的微分/radiance的微分。对于一个shading poin
 
 会出现以上这种反射/折射现象的是玻璃或者水
 
-![image-20231126112933947](C:\Users\ql\Blog\存一些暂时不想放上去的资料\docs\CG\CGBasic\images\image-20231126112557901.png)
+![mkdocs](images/image-20231126112557901.png)
 
-上图左边就是普通的反射 和 折射，反射使得球壳表面能看到窗外的倒影，折射使得光线能透过球壳打到里面的灰色材质；右边的反射和左边的相同，折射不同，原因是这个球壳是有颜色的，颜色的来源是折射进入球壳的光线被部分吸收，如果是完全吸收那么球壳就是黑的了。有一部分被吸收，另一部分仍在往前传播，那就显示出了颜色。
+上图左边就是普通的反射 和 折射，反射使得球壳表面能看到窗外的倒影，折射使得光线能透过球壳打到里面的灰色材质；右边的反射和左边的相同，但是折射不同，原因是这个球壳是有颜色的，颜色的来源是折射进入球壳的光线被部分吸收，如果是完全吸收那么球壳就是黑的了。有一部分被吸收，另一部分仍在往前传播，那就显示出了颜色。
 
 ### 给定法线和入射方向，求出射方向
 
@@ -63,6 +63,8 @@ $\omega_i+\omega_o=n$；$\omega_i$在$n$上的投影$(\omega_i·n)n$就是图中
 由法一我们知道$\omega_i$和$\omega_o$的俯仰角相同。那么现在只需求$\omega_o$的方向角即可。其实这很简单，我们从上往下看shading point所在的平面
 
 ![mkdocs](images/image-20231126114802889.png)
+
+$\phi_o$刚好等于$\phi_i$加上$\pi$，再对$2\pi$取模。
 
 ### 理想镜面反射BRDF
 
@@ -90,13 +92,13 @@ $\eta_isin\theta_i=\eta_tsin\theta_t$
 
 ![mkdocs](images/image-20231126122124538.png)
 
-当$cos\theta_t$得不到一个有意义的实数时，折射就不会发生，也就是当$1-(\frac{\eta_i}{\eta_t})^2(1-cos^2\theta_i)<0$时，化简之后，也就是$\eta_i>\eta_t$时。也就是光从折射率比较大的介质进入了折射率比较小的介质时，有可能出现没有折射的现象，这就叫**全反射现象！**
+当$cos\theta_t$得不到一个有意义的实数时，折射就不会发生，也就是当$1-(\frac{\eta_i}{\eta_t})^2(1-cos^2\theta_i)<0$时，可以推出$\eta_i>\eta_t$。当光从折射率比较大的介质进入了折射率比较小的介质，有可能出现没有折射的现象，这就叫**全反射现象！**
 
 ![mkdocs](images/image-20231126123401397.png)
 
-人在水底往各个方向去看，最多只能看到一个锥形的区域。因为根据左边这个图，当人往图中圈出来的哪个方向去看的时候，光线往平的方向去了，如果这个角度再大一点，所有能量都会反射到池子地下那就看不见了，这就是为什么右边的图会周围有一圈黑的。
+人在水底往各个方向去看，最多只能看到一个锥形的区域。因为根据左边这个图，当人往图中圈出来的那个方向去看的时候，光线往平的方向去了，如果这个角度再大一点，所有能量都会反射到池子地下那就看不见了，这就是为什么右边的图会周围有一圈黑的。
 
-我们之前在path tracing一个球的时候，**因为球有很好的对称性质**，所有进入球的光都会被折射出去(这一点本人暂时没搞懂)，入射点和出射点有很明显的对称性质。
+我们之前在path tracing一个球的时候，**因为球有很好的对称性质**，所有进入球的光都会被折射出去，入射点和出射点有很明显的对称性质(这一点我暂时没搞懂)。
 
 BRDF表示反射，R是reflect的意思。表示折射用BTDF，T是transmit的意思。**BTDF+BRDF=BSDF**，S是scatter的意思，表示散射，反射和折射都能看作一种散射。
 
@@ -138,7 +140,7 @@ $R_0$表示的是$R(0)$，这个式子近似表达了菲涅尔项从$R_0$增长�
 
 ### 微表面的BRDF
 
-![mkdocs](images\image-20231126135137635.png)
+![mkdocs](images/image-20231126135137635.png)
 
 菲涅尔项：有多少被反射。先定好能量
 
@@ -152,18 +154,18 @@ $R_0$表示的是$R(0)$，这个式子近似表达了菲涅尔项从$R_0$增长�
 
 各项同性的在公式上的意思是，$f_r(\theta_i,\phi_i;\theta_r,\phi_r)= f_r(\theta_i,\theta_r,\phi_r-\phi_i)$从4维降到3维。
 
-同理，各向异性的意思就是$f_r(\theta_i,\phi_i;\theta_r,\phi_r)\neq f_r(\theta_i,\theta_r,\phi_r-\phi_i)$
+同理，各向异性的意思是$f_r(\theta_i,\phi_i;\theta_r,\phi_r)\neq f_r(\theta_i,\theta_r,\phi_r-\phi_i)$
 
 ### BRDF的性质
 
 - 非负性
-  - $f_r(\omega_i\rightarrow\omega_r)>0$
+  	- $f_r(\omega_i\rightarrow\omega_r)>0$
 - 线性性
-  - 可加性
+  	- 可加性
 - 可逆性
-  - $f_r(\omega_i\rightarrow\omega_r)=f_r(\omega_r\rightarrow\omega_i)$
+  	- $f_r(\omega_i\rightarrow\omega_r)=f_r(\omega_r\rightarrow\omega_i)$
 - 能量守恒
-  - $\forall\omega_r\int_{H^2}f_r(\omega_i\rightarrow\omega_r)\cos\theta_id\omega_i\leq1$
+  	- $\forall\omega_r\int_{H^2}f_r(\omega_i\rightarrow\omega_r)\cos\theta_id\omega_i\leq1$
 
 ### BRDF测量
 

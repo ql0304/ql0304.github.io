@@ -12,7 +12,7 @@
 
 LearnOpenGL里面实现SSAO有4个pass：
 
-1. 几何 pass，用来收集场景的几何数据。包括逐片段在view空间的position值，显然这个值的z分量就是片段的线性深度；逐片段在view空间的法线；以及一个颜色值albedo，现阶段这个值无关紧要。
+1. 几何 pass，用来收集场景的几何数据。包括逐片段position值(view space)，显然这个值的z分量就是片段的线性深度；逐片段法线(view space)；以及一个颜色值albedo，现阶段这个值无关紧要。
 2. SSAO pass，真正实现ssao效果的地方。
 3. blur pass，模糊掉随机旋转采样核心带来的噪声。
 4. lighting pass，做光照计算。

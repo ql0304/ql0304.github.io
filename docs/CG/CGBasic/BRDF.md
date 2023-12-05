@@ -18,13 +18,13 @@ BRDF的定义：irradiance的微分/radiance的微分。对于一个shading poin
 
 ![mkdocs](images/image-20231125225626152.png)
 
-光在各个角度恒定，**不管从哪个方向入射能量都一样**，$L_i(\omega_i)=C_1$ 。理想漫反射表面，光被均匀的反射到每一个方向而且这个表面不会吸收光，也就是说，**不管从哪个方向出射能量都一样**，因此$f_r=C_2$（还记得$f_r$的定义吗）。所以，渲染方程为$L_o(\omega_o)=f_rL_i\int_{H^2}cos\theta_id\omega_i$，$cos\theta_i$指的是入射光与法线的夹角，刚好等于空间中的俯仰角，我们用球坐标把式子拆成二重积分$\int_{H^2}cos\theta_id\omega_i=\int_{2\pi}\int_{\frac{\pi}{2}}cos\theta_id\theta_i=\pi$
+光在各个角度恒定，**不管从哪个方向入射能量都一样**，$L_i(\omega_i)=C_1$ 。理想漫反射表面，光被均匀的反射到每一个方向，也就是说，**不管从哪个方向出射能量都一样**，因此$f_r=C_2$（还记得$f_r$的定义吗）。所以，渲染方程为$L_o(\omega_o)=f_rL_i\int_{H^2}cos\theta_id\omega_i$，$cos\theta_i$指的是入射光与法线的夹角，刚好等于空间中的俯仰角，我们用球坐标把式子拆成二重积分$\int_{H^2}cos\theta_id\omega_i=\int_{2\pi}\int_{\frac{\pi}{2}}cos\theta_id\theta_i=\pi$
 
 ![mkdocs](images/image-20231125231723707.png)
 
 所以原本的式子$L_o(\omega_o)=f_rL_i\pi$ ；根据能量守恒定律，进来多少irradiance就得出去多少irradiance，而且理想漫反射表面是不会吸收能量的，所以$L_o=L_i$
 
-可推知 4  $f_r\pi=1$ 所以$f_r=\frac{1}{\pi}$。这里可以加一个albedo：颜色值
+可推知  $f_r\pi=1$ 所以$f_r=\frac{1}{\pi}$。这里可以加一个albedo：颜色值
 
 ### glossy Material
 

@@ -34,7 +34,7 @@ $e_1,e_2$是顶点的position。这样就能求出t和b了。
 
 也由施密特正交化，去处理b
 
-![mkdocs](images\image-20231126210121907.png)
+![mkdocs](images/image-20231126210121907.png)
 
 这样tbn就求解完毕了。
 

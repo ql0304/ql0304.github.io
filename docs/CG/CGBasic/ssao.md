@@ -19,7 +19,9 @@ LearnOpenGL里面实现SSAO有4个pass：
 
 几何pass不详细展开，主要是FBO的设置与绑定。详细请参考LearnOpenGL->高级OpenGL->帧缓冲那个章节。
 
-在进入ssao pass之前，我们除了逐片段的position和normal，还需要生成**64个随机样本点**和**旋转采样核心**。
+在进入ssao pass之前，我们除了逐片段的position和normal，还需要生成**64个随机样本点**和**旋转采样核心**。随机样本点定义在以shading point为原点，法线为z轴的局部坐标系内，因为我们不可能给每个shading point都设置随64个随机样本点。样本点乘上TBN矩阵之后就被转换到了view空间，但这只是个偏移量，我们还需将shading point加上这个偏移量之后才能得到view空间采样点的坐标。
+
+生成样本点的代码如下：
 
 ```c++
 	// generate sample kernel
@@ -29,8 +31,11 @@ LearnOpenGL里面实现SSAO有4个pass：
     std::vector<glm::vec3> ssaoKernel;
     for (unsigned int i = 0; i < 64; ++i)
     {
+        //x,y分量的范围从（0，1）转换到（-1，1）;z分量的范围依旧是（0，1）
         glm::vec3 sample(randomFloats(generator) * 2.0 - 1.0, randomFloats(generator) * 2.0 - 1.0, randomFloats(generator));
+        //归一化
         sample = glm::normalize(sample);
+        //向量长度为（0，1）之间的随机数
         sample *= randomFloats(generator);
         float scale = float(i) / 64.0f;
 
@@ -40,8 +45,10 @@ LearnOpenGL里面实现SSAO有4个pass：
         ssaoKernel.push_back(sample);
     }
 ```
+noise是一张4*4大小的贴图，贴图的每一位存放了一个z分量为0的随机向量。取一个随机向量出来与法线做正交化之后就得到了tangent向量，这就是生成“旋转”采样核心的原理。
 
-样本点sample(x,y,z)是随机point，x、y、z范围是(0,1)。scale保证了在局部坐标系内sample到原点的距离在0.1到1.0上均匀分布。
+生成noise texture的代码如下：
+
 
 ```c++
 	// generate noise texture
@@ -61,21 +68,30 @@ LearnOpenGL里面实现SSAO有4个pass：
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 ```
 
-noise是一张4*4大小的贴图，贴图的每一位存放了一个z分量为0的随机向量。
+
 
 数据都已经准备好，我们在采样之前先说一下为什么要使用**半球采样核心**而不是球型采样核心。
 
 ![mkdocs](images/image-20231128134738406.png)
 
-对于一片平整的墙，很显然核心中有一半的样本点都在墙这个几何体上，所以导致平整的墙面也会显得灰蒙蒙的，出于这个原因我们使用一个沿着表面法向量的半球体采样核心。
+对于一片平整的墙，很显然核心中有一半的样本点都在墙这个几何体上，所以导致平整的墙面也会显得灰蒙蒙的，出于这个原因我们使用一个沿着表面法向量的半球体采样核心。也就是说我们之关心表面上方的样本，不关心表面下方的样本，因为它不会影响到环境光遮蔽。
 
 ![mkdocs](images/image-20231128134930961.png)
 
 ![mkdocs](images/image-20231128134955896.png)
 
-这也是我们要在gbuffer里保留normal的原因。
+因此我们要在gbuffer里保留normal。
 
 铺垫了那么多，ssao的步骤如下：
+
+1. 读取position，normal，noise，建立局部坐标系。得到局部坐标系转view坐标系的矩阵TBN
+2. for循环遍历64个样本点，对每个样本点
+    - 转到view空间，再加上position，获得采样点在view空间的坐标
+    - 把采样点转到屏幕坐标系
+    - 用xy在深度贴图上采样，再与z进行比较
+    - 根据比较结果修改遮蔽因子
+3. 计算遮蔽系数
+4. 输出到ssao贴图中
 
 ```c++
 void main()
